@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://ws1.postescanada-canadapost.ca/css/addresscomplete-2.00.min.css?key=YW24-FF84-AJ52-KG73" />
+<script type="text/javascript" src="https://ws1.postescanada-canadapost.ca/js/addresscomplete-2.00.min.js?key=YW24-FF84-AJ52-KG73"></script>
+
+<script type="text/javascript">
+	var fields = [
+		{ element: "street-address", field: "Line1"},
+		{ element: "city", field: "City", mode: pca.fieldMode.POPULATE },
+		{ element: "state", field: "ProvinceName", mode: pca.fieldMode.POPULATE },
+		{ element: "postcode", field: "PostalCode" },
+		{ element: "country", field: "CountryName", mode: pca.fieldMode.COUNTRY }
+	],
+	options = {
+		key: "YW24-FF84-AJ52-KG73",
+		//culture: "fr-ca",
+		//languagePreference: "fra"
+	},
+	control = new pca.Address(fields, options);
+ 
+ //manipulate the response from Canada Post
+	control.listen("populate", function (address) {
+	    document.getElementById("responseLine1").innerHTML = address.Line1;
+	    document.getElementById("responseLine2").innerHTML = address.City;
+	    document.getElementById("responseLine3").innerHTML = address.ProvinceName;
+	    document.getElementById("responseLine4").innerHTML = address.PostalCode;
+	    document.getElementById("responseLine5").innerHTML = address.CountryName;
+	    });
+		
+		
+//Delighted API		
+!function(e,t,r,n,a)
+{if(!e[a]){for(var i=e[a]=[],s=0;s<r.length;s++){var c=r[s];i[c]=i[c]||function(e){return function(){var t=Array.prototype.slice.call(arguments);i.push([e,t])}}(c)}i.SNIPPET_VERSION="1.0.1";var o=t.createElement("script");o.type="text/javascript",o.async=!0,o.src="https://d2yyd1h5u9mauk.cloudfront.net/integrations/web/v1/library/"+n+"/"+a+".js";var p=t.getElementsByTagName("script")[0];p.parentNode.insertBefore(o,p)}}(window,document,["survey","reset","config","init","set","get","event","identify","track","page","screen","group","alias"],"KhpAJVTDByvXQ9Fn","delighted");
+
+  delighted.survey({
+    email: "rzhao@thinkingcapital.com", // customer email (optional)
+    name: "Rui Zhao",               // customer name (optional)
+    properties: {                       // extra context (optional)
+      orderId: "123ABC",
+      shippingMethod: "Ground"
+    }
+  });
+ 
+</script>
+
+
+</head>
+
+<body>
+
+<div>
+	<div class="input-line">
+		<label for="street-address">Address</label><br>
+		<input id="street-address" type="text" placeholder="Street address" autofocus />
+	</div>
+	<div class="input-line">
+		<label for="city">City</label><br>
+		<input id="city" type="text" placeholder="City" />
+	</div>
+	<div class="input-line">
+		<label for="state">Province</label><br>
+		<input id="state" type="text" placeholder="State/Province" />
+	</div>
+	<div class="input-line">
+		<label for="postcode">Postal Code</label><br>
+		<input id="postcode" type="text" placeholder="Zip/Postcode" />
+	</div>
+	<div class="input-line">
+		<label for="country">Country</label><br>
+		<input id="country" type="text" placeholder="Country" />
+	</div>
+</div>
+
+<p><br>Here you can see the response from Canada Post:</p>
+<p id="responseLine1">Response line1</p>
+<p id="responseLine2">Response line2</p>
+<p id="responseLine3">Response line3</p>
+<p id="responseLine4">Response line4</p>
+<p id="responseLine5">Response line5</p>
+
+
+</body>
+</html>
+
